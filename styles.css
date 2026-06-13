@@ -155,10 +155,6 @@ main {
   font-weight: 800;
 }
 
-#summaryName {
-  font-size: 28px;
-}
-
 .seat-pills {
   display: grid;
   gap: 10px;

@@ -110,7 +110,6 @@ const floorPlan = document.querySelector("#floorPlan");
 const layoutMode = document.querySelector("#layoutMode");
 const layoutHint = document.querySelector("#layoutHint");
 
-const summaryName = document.querySelector("#summaryName");
 const firstSeat = document.querySelector("#firstSeat");
 const secondSeat = document.querySelector("#secondSeat");
 
@@ -295,7 +294,6 @@ function renderFloorPlan() {
 
 function updateResult() {
   if (!state.selectedName) {
-    summaryName.textContent = "名前を入力してください";
     firstSeat.textContent = "初回: --";
     secondSeat.textContent = "席替え: --";
     layoutHint.textContent = "名前を選ぶと、該当する円卓が赤く表示されます。";
@@ -305,7 +303,6 @@ function updateResult() {
   const first = tableFor(state.selectedName, "first");
   const second = tableFor(state.selectedName, "second");
 
-  summaryName.textContent = displayName(state.selectedName);
   firstSeat.textContent = `初回: ${first}卓`;
   secondSeat.textContent = `席替え: ${second}卓`;
 }
