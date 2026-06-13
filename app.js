@@ -106,7 +106,6 @@ const clearButton = document.querySelector("#clearButton");
 const seatMap = document.querySelector("#seatMap");
 const tabFirst = document.querySelector("#tabFirst");
 const tabSecond = document.querySelector("#tabSecond");
-const resultPanel = document.querySelector("#resultPanel");
 const floorPlan = document.querySelector("#floorPlan");
 const layoutMode = document.querySelector("#layoutMode");
 const layoutHint = document.querySelector("#layoutHint");
@@ -114,8 +113,6 @@ const layoutHint = document.querySelector("#layoutHint");
 const summaryName = document.querySelector("#summaryName");
 const firstSeat = document.querySelector("#firstSeat");
 const secondSeat = document.querySelector("#secondSeat");
-const firstResult = document.querySelector("#firstResult");
-const secondResult = document.querySelector("#secondResult");
 
 function normalize(value) {
   return value.replace(/\s/g, "").toLowerCase();
@@ -298,12 +295,9 @@ function renderFloorPlan() {
 
 function updateResult() {
   if (!state.selectedName) {
-    summaryName.textContent = "名前を選択";
+    summaryName.textContent = "名前を入力してください";
     firstSeat.textContent = "初回: --";
     secondSeat.textContent = "席替え: --";
-    firstResult.textContent = "--";
-    secondResult.textContent = "--";
-    resultPanel.classList.add("hidden");
     layoutHint.textContent = "名前を選ぶと、該当する円卓が赤く表示されます。";
     return;
   }
@@ -314,9 +308,6 @@ function updateResult() {
   summaryName.textContent = displayName(state.selectedName);
   firstSeat.textContent = `初回: ${first}卓`;
   secondSeat.textContent = `席替え: ${second}卓`;
-  firstResult.textContent = `${first}卓`;
-  secondResult.textContent = `${second}卓`;
-  resultPanel.classList.remove("hidden");
 }
 
 function selectName(name) {
