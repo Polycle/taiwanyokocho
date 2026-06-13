@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>台湾横丁 当日ナビ</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">今学期最後の台湾横丁</p>
+        <h1>台湾横丁 当日ナビ</h1>
+      </div>
+      <a class="map-link" href="https://maps.app.goo.gl/HKguvoFeEcWUBxWVA?g_st=ic" target="_blank" rel="noreferrer">会場地図</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="date">6月13日（土）18:00 - 21:00</p>
+          <h2>十三香私房菜 十三香海鮮熱炒店</h2>
+          <p>自分の名前を選ぶと、乾杯時の席と19:15の席替え後の席が表示されます。</p>
+        </div>
+        <div class="quick-result" aria-live="polite">
+          <span class="label">あなたの席</span>
+          <strong id="summaryName">名前を選択</strong>
+          <div class="seat-pills">
+            <span id="firstSeat">初回: --</span>
+            <span id="secondSeat">席替え: --</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="finder" aria-labelledby="finder-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Name Search</p>
+            <h2 id="finder-title">名前を探す</h2>
+          </div>
+          <button id="clearButton" class="ghost-button" type="button">クリア</button>
+        </div>
+        <div class="search-row">
+          <div class="suggest-field">
+            <input id="nameSearch" type="search" placeholder="名札の名前を入力" autocomplete="off" aria-controls="suggestions" aria-expanded="false" />
+            <div id="suggestions" class="suggestions hidden" role="listbox" aria-label="もしかして候補"></div>
+          </div>
+        </div>
+        <div id="resultPanel" class="result-panel hidden">
+          <div>
+            <span class="label">初回 18:15 乾杯</span>
+            <strong id="firstResult">--</strong>
+          </div>
+          <div>
+            <span class="label">席替え 19:15</span>
+            <strong id="secondResult">--</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline" aria-labelledby="timeline-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Schedule</p>
+            <h2 id="timeline-title">当日の流れ</h2>
+          </div>
+        </div>
+        <ol>
+          <li><time>18:15</time><span>乾杯</span></li>
+          <li><time>19:15</time><span>席替え 1回目</span></li>
+          <li><time>20:00</time><span>席自由時間</span></li>
+          <li><time>20:40</time><span>アンケート記入</span></li>
+          <li><time>20:50</time><span>写真撮影</span></li>
+          <li><time>21:00</time><span>お開き</span></li>
+        </ol>
+      </section>
+
+      <section class="seating" aria-labelledby="seating-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Tables 1-6</p>
+            <h2 id="seating-title">座席表</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="座席表の切り替え">
+            <button id="tabFirst" class="active" type="button" role="tab" aria-selected="true">初回</button>
+            <button id="tabSecond" type="button" role="tab" aria-selected="false">席替え後</button>
+          </div>
+        </div>
+        <div class="layout-wrap">
+          <div class="layout-copy">
+            <span class="label">店内テーブル配置</span>
+            <strong id="layoutMode">初回の座席</strong>
+            <p id="layoutHint">名前を選ぶと、該当する円卓が赤く表示されます。</p>
+          </div>
+          <div id="floorPlan" class="floor-plan" aria-label="店内テーブル配置"></div>
+        </div>
+        <div id="seatMap" class="seat-map"></div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://forms.gle/UERzoFAgmiFcajLUA" target="_blank" rel="noreferrer">参加後アンケートはこちら</a>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
