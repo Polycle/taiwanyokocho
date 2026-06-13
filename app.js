@@ -178,9 +178,27 @@ function hideSuggestions() {
   nameSearch.setAttribute("aria-expanded", "false");
 }
 
-function renderMaybeSuggestions(filter = "") {
+function nicknameCandidates(value) {
+  const keyword = normalize(value);
+  if (!keyword) return [];
+
+  const matches = participants
+    .filter((participant) => normalize(participant.label).includes(keyword))
+    .sort((a, b) => {
+      const aLabel = normalize(a.label);
+      const bLabel = normalize(b.label);
+      const aStarts = aLabel.startsWith(keyword) ? 0 : 1;
+      const bStarts = bLabel.startsWith(keyword) ? 0 : 1;
+      return aStarts - bStarts || a.label.localeCompare(b.label, "ja");
+    });
+
+  if (matches.length) return matches.slice(0, 8);
+  return closeParticipants(value);
+}
+
+function renderNicknameSuggestions(filter = "") {
   suggestions.innerHTML = "";
-  const matches = closeParticipants(filter);
+  const matches = nicknameCandidates(filter);
   if (!matches.length) {
     hideSuggestions();
     return;
@@ -333,7 +351,7 @@ nameSearch.addEventListener("input", (event) => {
     updateResult();
     renderFloorPlan();
     renderMap();
-    suggestions.innerHTML = '<div class="suggest-empty">同じ名札名の人がいます。本名で入力してください。</div>';
+    suggestions.innerHTML = '<div class="suggest-empty">同じ名札名の人がいます。もう少し入力してください。</div>';
     suggestions.classList.remove("hidden");
     nameSearch.setAttribute("aria-expanded", "true");
     return;
@@ -343,11 +361,11 @@ nameSearch.addEventListener("input", (event) => {
   updateResult();
   renderFloorPlan();
   renderMap();
-  renderMaybeSuggestions(event.target.value);
+  renderNicknameSuggestions(event.target.value);
 });
 
 nameSearch.addEventListener("focus", (event) => {
-  if (!findExactParticipants(event.target.value).length) renderMaybeSuggestions(event.target.value);
+  if (!findExactParticipants(event.target.value).length) renderNicknameSuggestions(event.target.value);
 });
 
 document.addEventListener("click", (event) => {

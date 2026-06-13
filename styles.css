@@ -240,7 +240,7 @@ select {
 }
 
 .suggestions::before {
-  content: "もしかして？";
+  content: "候補";
   display: block;
   padding: 2px 4px 4px;
   color: var(--muted);
